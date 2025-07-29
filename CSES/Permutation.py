@@ -1,8 +1,3 @@
-# type: ignore
-import sys
-sys.stdout = open('CP/output.txt', 'w')
-sys.stdin = open('CP/input.txt', 'r') 
-
 n = int(input())
 o = []
 e = []
@@ -18,12 +13,3 @@ else:
     for i in o:
         e.append(i)
     print(*e)
-
-
-
-            
-
-
-   
-
-    
