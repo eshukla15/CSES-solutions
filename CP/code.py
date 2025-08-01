@@ -3,21 +3,23 @@ import sys
 sys.stdout = open('CP/output.txt', 'w')
 sys.stdin = open('CP/input.txt', 'r') 
 
-n = int(input())
-o = []
-e = []
-if n in set([0, 2, 3]):
-    print("NO SOLUTION")
-else:
-    for i in range(1, n+1):
-        if i%2:
-            o.append(i)
+t = int(input())
+for _ in range(t):   
+    x, y = (map(int, input().split()))
+
+    #first remove the numbers of the square before it
+    #then according to parity add the remaining part
+    if x > y:
+        if x % 2 == 0:
+            print((x-1)**2 + x*2 - y)
         else:
-            e.append(i)
-    
-    for i in o:
-        e.append(i)
-    print(*e)
+            print((x-1)**2 + y)
+
+    else:
+        if y % 2 == 0:
+            print((y-1)**2 + y - 2*x)
+        else:
+           print((y-1)**2 + x) 
 
 
 
