@@ -1,8 +1,3 @@
-# type: ignore
-import sys
-sys.stdout = open('CP/output.txt', 'w')
-sys.stdin = open('CP/input.txt', 'r') 
-
 n = int(input())
 for i in range(1, n+1):
     total = (i**4 - i**2) // 2    #nC2 for each piece and its reverse
