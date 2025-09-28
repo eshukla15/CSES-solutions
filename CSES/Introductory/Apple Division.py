@@ -1,9 +1,6 @@
-# type: ignore
-import sys
-sys.stdin = open('CP/input.txt', 'r') 
-sys.stdout = open('CP/output.txt', 'w')
+#same approach as last one
+#find all pairs
 
-#type your code below
 n = int(input())
 a = list(map(int, input().split()))
 
@@ -18,4 +15,3 @@ def calc(index, sum1, sum2, arr):
     return min(choose, not_choose)
 
 print(calc(0, 0, 0, a))
-
