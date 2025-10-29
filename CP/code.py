@@ -3,19 +3,17 @@ import sys
 sys.stdin = open('CP/input.txt', 'r') 
 sys.stdout = open('CP/output.txt', 'w')
 
-#type your code below
+#type your code here
+
 n = int(input())
-a = list(map(int, input().split()))
+c = 0
+MOD = 10**9 + 7
+dp = [0] * (n+1)
+dp[0] = 1
+for i in range(1, n + 1):
+    for j in range(1, 7):
+        if i - j >= 0:
+            dp[i] = (dp[i] + dp[i - j]) % MOD
 
-def calc(index, sum1, sum2, arr):
-    if index == n:
-        return abs(sum1 - sum2)
-    
-    choose = calc(index+1, sum1+a[index], sum2, arr)
 
-    not_choose = calc(index+1, sum1, sum2+a[index], arr)
-
-    return min(choose, not_choose)
-
-print(calc(0, 0, 0, a))
-
+print(dp[n])
