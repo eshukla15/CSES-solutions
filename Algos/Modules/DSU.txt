@@ -1,0 +1,51 @@
+Think of DSU as a system of parents and children:
+
+each element points to a parent
+the parent points to its parent
+...until you reach the root
+
+
+find(x) = follow these pointers until you reach the root.
+
+Then DSU does something clever called path compression:
+
+it makes x point directly to the root
+
+
+→ so next time, find(x) is O(1).
+
+🟩 An example to understand DSU cleanly
+
+Suppose you want to track which ticket indices are still available.
+
+0 1 2 3 4 5  (available)
+
+
+If someone buys ticket 4, you want to mark 4 as gone and next time redirect to 3.
+
+DSU does this:
+
+parent[4] = 3
+
+
+If later 3 is gone:
+
+parent[3] = 2
+
+
+Now if someone asks for ticket 4:
+
+find(4)
+ → finds parent 3
+ → finds parent 2
+ → returns 2
+
+
+And path compression updates:
+
+parent[4] = 2
+
+
+Next time find(4) returns in one step.
+
+That is why DSU is so fast.

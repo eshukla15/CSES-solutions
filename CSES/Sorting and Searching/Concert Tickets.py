@@ -1,9 +1,3 @@
-# type: ignore
-import sys
-sys.stdin = open('CP/input.txt', 'r') 
-sys.stdout = open('CP/output.txt', 'w')
-
-#type your code here
 # bisect module is used
 # uses binary search properties
 # to insert and find index in sorted list
@@ -12,19 +6,19 @@ sys.stdout = open('CP/output.txt', 'w')
 # you can remove the element
 # check the price in array which is greater than the customers price
 # if its the first element, then alas!
-# the bisect wont work or any type of sorted list also wont work
+# the bisect wont work or any type of sorted list also wont work 
+# or here, sortedList cannot be used
+# since pip install is needed
 # because that may give to nsquare
 # we use DSU Nnow
 
 import bisect
-from sortedcontainers import SortedList
 n, m = map(int, input().split())
-h = SortedList( map(int, input().split()))
+h = list( map(int, input().split()))
 t = list( map(int, input().split()))
-
+h.sort()
 # DSU parent: parent[i] = largest index ≤ i that is still available
 parent = list(range(n))
-print(parent)
 def find(x):
     if x < 0:
         return -1
