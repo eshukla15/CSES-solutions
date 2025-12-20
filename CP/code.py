@@ -4,43 +4,22 @@ sys.stdin = open('CP/input.txt', 'r')
 sys.stdout = open('CP/output.txt', 'w')
 
 #type your code here
-# bisect module is used
-# uses binary search properties
-# to insert and find index in sorted list
-# or maintain a sorted order in Ologn time
-# in this question, check if the price can be afforded
-# you can remove the element
-# check the price in array which is greater than the customers price
-# if its the first element, then alas!
-# the bisect wont work or any type of sorted list also wont work
-# because that may give to nsquare
-# we use DSU Nnow
+import sys
 
-import bisect
-from sortedcontainers import SortedList
-n, m = map(int, input().split())
-h = SortedList( map(int, input().split()))
-t = list( map(int, input().split()))
+n = int(sys.stdin.readline())
+MOD = 10**9 + 7
 
-# DSU parent: parent[i] = largest index ≤ i that is still available
-parent = list(range(n))
-print(parent)
-def find(x):
-    if x < 0:
-        return -1
-    if parent[x] == x:
-        return x
-    parent[x] = find(parent[x])
-    return parent[x]
-#refer to DSU.txt example
-for i in t:
-    idx = bisect.bisect(h, i) - 1
-    # now find the parent
-    i = find(idx)   #stores the actual parent or index
-    if i == -1:
-        print(-1)
-    else:
-        print(h[i])
-        # After using ticket i, the next available is i-1
-        parent[i] = find(i - 1)
-        
+dp = [0] * (n + 1)
+dp[0] = 1
+# since we need dp[i] = dp[i-1] + dp[i-2] + ... + dp[i-6]
+
+window = 0
+
+for i in range(1, n + 1):
+    window = (window + dp[i - 1]) % MOD
+    #You cannot reach i from i-7 with one dice throw.
+    if i - 7 >= 0:
+        window = (window - dp[i - 7]) % MOD     #take only previous 6 choices
+    dp[i] = window
+
+print(dp[n])

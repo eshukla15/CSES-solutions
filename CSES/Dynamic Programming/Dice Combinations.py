@@ -12,18 +12,24 @@
 #     for i in range(1, 7):
 #         total += dp(target - i)
 #     return total % MOD
-
 # print(dp(n))
 
-n = int(input())
-c = 0
-MOD = 10**9 + 7
-dp = [0] * (n+1)
-dp[0] = 1
-for i in range(1, n + 1):
-    for j in range(1, 7):
-        if i - j >= 0:
-            dp[i] = (dp[i] + dp[i - j]) % MOD
+# -!!! If recursion depth depends on input size → DON’T USE RECURSION !!! --
 
+import sys
+
+n = int(sys.stdin.readline())
+MOD = 10**9 + 7
+
+dp = [0] * (n + 1)
+dp[0] = 1
+
+window = 0
+
+for i in range(1, n + 1):
+    window = (window + dp[i - 1]) % MOD
+    if i - 7 >= 0:
+        window = (window - dp[i - 7]) % MOD
+    dp[i] = window
 
 print(dp[n])
