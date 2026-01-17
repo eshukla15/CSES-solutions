@@ -48,3 +48,5 @@ for i in range(1, n + 1):
     dp[i] = window
 
 print(dp[n])
+
+#dp problem with optimization of rolling sum window
