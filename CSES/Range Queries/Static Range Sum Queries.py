@@ -1,19 +1,7 @@
-# type: ignore
-import sys
-sys.stdin = open('CP/input.txt', 'r') 
-sys.stdout = open('CP/output.txt', 'w')
-
-#t = int(input())
-#s = input()
-# l = list(map(int, input().split()))
-# map(int, input().split())
 import sys
 input = sys.stdin.readline
 
 n, q = map(int, input().split())
-
-
-
 arr = list(map(int, input().split()))
 pref = [arr[0]]
 for i in range(1, n):
@@ -28,4 +16,3 @@ for i in range(q):
     else:
         print(pref[b-1])
     
-
